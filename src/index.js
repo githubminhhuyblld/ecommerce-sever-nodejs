@@ -9,6 +9,8 @@ const bodyParser = require("body-parser");
 const authRoute = require("./routes/auth");
 const userRoute = require("./routes/user")
 const roleRoute = require("./routes/role")
+const categoryRoute = require("./routes/category")
+const productRoute = require("./routes/product")
 
 const app = express();
 const port = 8088;
@@ -36,7 +38,7 @@ app.listen(port, () => {
 app.use("/api/v1/auth", authRoute);
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/role", roleRoute);
+app.use("/api/v1/category", categoryRoute);
+app.use("/api/v1/product", productRoute);
 
-//AUTHENTICATION
 
-//AUTHORIZATION

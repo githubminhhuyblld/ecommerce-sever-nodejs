@@ -4,9 +4,6 @@ node_modules/
 # Ignore built output
 dist/
 
-# Ignore TypeScript compiler output
-*.js
-*.js.map
 
 # Ignore environment variables file (if applicable)
 .env
