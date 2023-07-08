@@ -13,7 +13,6 @@ const roleController = {
                 description: req.body.description,
             });
 
-            // Lưu vai trò vào cơ sở dữ liệu
             const savedRole = await role.save();
 
             res.status(200).json(savedRole);

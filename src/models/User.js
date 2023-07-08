@@ -20,10 +20,7 @@ const userSchema = new mongoose.Schema({
         required: true,
         minLength: 6,
     },
-    admin: {
-        type: Boolean,
-        default: false
-    },
+
     isDeleted: {
         type: Boolean,
         default: false,
