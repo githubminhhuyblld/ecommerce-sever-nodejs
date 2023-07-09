@@ -1,5 +1,12 @@
 const mongoose = require("mongoose")
 
+
+const ServiceType = {
+    GOOGLE: 'GOOGLE',
+    FACEBOOK: 'FACEBOOK',
+    NORMAL: "NORMAL"
+};
+
 const userSchema = new mongoose.Schema({
     username: {
         type: String,
@@ -25,12 +32,37 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         default: false,
     },
+    image: {
+        type: String,
+    },
+    firstName: {
+        type: String,
+    },
+    lastName: {
+        type: String,
+    },
+    numberPhone: {
+        type: String,
+    },
+    birthday: {
+        type: Number,
+    },
+    shop: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Shop",
+    },
     roles: [
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: "Role",
         },
     ],
+    ServiceType: {
+        type: String,
+        enum: [ServiceType.NORMAL, ServiceType.GOOGLE, ServiceType.FACEBOOK],
+        default: ServiceType.NORMAL
+    }
+
 
 }, {timestamps: true})
 

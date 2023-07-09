@@ -13,7 +13,8 @@ router.get("/", productController.getAllProducts);
 //DELETE PRODUCTS
 router.delete("/:id", productController.removeProductById);
 
-
+// SEARCH PRODUCTS
+router.get("/search", productController.filterProduct);
 
 
 

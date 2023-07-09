@@ -11,6 +11,7 @@ const userRoute = require("./routes/user")
 const roleRoute = require("./routes/role")
 const categoryRoute = require("./routes/category")
 const productRoute = require("./routes/product")
+const shopRoute = require("./routes/shop")
 
 const app = express();
 const port = 8088;
@@ -40,5 +41,6 @@ app.use("/api/v1/user", userRoute);
 app.use("/api/v1/role", roleRoute);
 app.use("/api/v1/category", categoryRoute);
 app.use("/api/v1/product", productRoute);
+app.use("/api/v1/shop", shopRoute);
 
 

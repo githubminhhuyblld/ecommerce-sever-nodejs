@@ -1,12 +1,16 @@
-const bcrypt = require("bcrypt")
+
 const User = require("../models/User")
 
 const userController = {
     getAllUsers: async (req, res) => {
         try {
-            const users = await User.find();
+            const users = await User.find().select("-password -username -ServiceType -__v").populate({
+                path: "roles",
+                select: "-createdAt -updatedAt -description -__v"
+            });
             res.status(200).json(users)
         } catch (err) {
+            console.log(err)
             res.status(500).json(err)
         }
 

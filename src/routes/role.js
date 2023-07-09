@@ -5,9 +5,4 @@ const roleController = require("../controllers/roleController")
 router.post("/", roleController.addRole);
 
 
-
-
-
-
-
 module.exports = router;

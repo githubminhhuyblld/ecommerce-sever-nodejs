@@ -20,6 +20,13 @@ const authController = {
                 email: req.body.email,
                 password: hashed,
                 roles: [userRole.id],
+                // roles: [userRole.id,adminRole.id,manager.id],
+                // image:req.body.image,
+                // firstName:req.body.firstName,
+                // lastName:req.body.lastName,
+                // numberPhone:req.body.numberPhone,
+                // birthday:req.body.birthday,
+                // shop:req.body.birthday,
             })
             //
             const user = await newUser.save();
@@ -72,7 +79,7 @@ const authController = {
                 const {password, ...others} = user._doc;
                 const userWithRoleName = {
                     ...others,
-                    roles: user.roles.map((role) => role.name), // Lấy tên của các vai trò
+                    roles: user.roles.map((role) => role.name),
                 };
 
                 res.status(200).json({user: userWithRoleName, accessToken: accessToken});

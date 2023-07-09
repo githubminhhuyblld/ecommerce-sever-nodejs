@@ -16,6 +16,16 @@ const middlewareController = {
             res.status(401).json("Unauthorized!!");
         }
     },
+    verifyTokenAndUserAuth: (req, res, next) => {
+        middlewareController.verifyToken(req, res, () => {
+            if (req.user.id === req.params.userId) {
+                next();
+            } else {
+                res.status(500).json({message: "You are not allowed to register a shop for this user"});
+            }
+        })
+
+    },
     verifyTokenAndManagerAuth: (req, res, next) => {
         middlewareController.verifyToken(req, res, async () => {
             try {
