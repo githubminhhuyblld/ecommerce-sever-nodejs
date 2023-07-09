@@ -26,6 +26,7 @@ const productVariantSchema = new mongoose.Schema({
         required: true,
     },
 
+
 });
 const sizeSchema = new mongoose.Schema({
     name: {
@@ -74,6 +75,11 @@ const productSchema = new mongoose.Schema({
     isDeleted: {
         type: Boolean,
         default: false,
+    },
+    shop: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Shop",
+        required: true,
     },
 
 }, {timestamps: true});

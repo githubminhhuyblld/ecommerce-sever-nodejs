@@ -21,7 +21,7 @@ const shopController = {
                 return res.status(400).json({message: 'User already register shop!'});
             }
 
-            const newShop = new Shop({
+            const newShop = await new Shop({
                 name,
                 description,
                 image,
@@ -39,7 +39,7 @@ const shopController = {
 
         } catch (error) {
             console.log(error)
-            res.status(500).json({message: error});
+            res.status(500).json({message: error.message });
         }
 
     },
@@ -65,7 +65,6 @@ const shopController = {
             if (!updatedShop) {
                 return res.status(404).json({ message: "Shop not found!" });
             }
-            await user.save();
             res.status(200).json({ message: "Shop updated successfully", shop: updatedShop });
         } catch (error) {
             console.log(error);

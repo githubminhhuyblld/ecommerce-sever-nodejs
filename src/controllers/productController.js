@@ -1,15 +1,18 @@
 const Product = require("../models/product")
 const Category = require("../models/category");
 const User = require("../models/User");
+const removeCommonFiled = require("../Untils/removeCommonFiled")
+
 
 const productController = {
     addProduct: async (req, res) => {
         try {
-            const {name, newPrice, oldPrice, rating, description, sizes, image, category, variants} = req.body;
+            const {name, newPrice, oldPrice, rating, description, sizes, image, category, variants, shop} = req.body;
             let sale = ((oldPrice - newPrice) / oldPrice) * 100;
             if (sale < 0) {
                 sale = 0
             }
+            sale = Math.round(sale);
             const product = await Product.create({
                 name,
                 newPrice,
@@ -21,6 +24,7 @@ const productController = {
                 image,
                 category,
                 variants,
+                shop
             });
 
             res.status(200).json({product});
@@ -31,7 +35,10 @@ const productController = {
     },
     getAllProducts: async (req, res) => {
         try {
-            const products = await Product.find();
+            const products = await Product.find().populate({
+                path:"shop",
+                select:removeCommonFiled
+            });
             res.status(200).json(products)
         } catch (err) {
             res.status(500).json(err)
@@ -53,6 +60,7 @@ const productController = {
                 image,
                 category,
                 variants,
+
             }, {new: true});
 
             if (!updatedProduct) {

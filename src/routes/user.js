@@ -6,6 +6,9 @@ const middlewareController = require("../middlewares/middlewareController")
 router.get("/", middlewareController.verifyTokenAndManagerAuth, userController.getAllUsers);
 
 //DELETE USER
-router.delete("/:id",middlewareController.verifyTokenAndManagerAuth, userController.deleteUser);
+router.delete("/:userId",middlewareController.verifyTokenAndManagerAuth, userController.deleteUser);
+
+//UPDATE USER
+router.put("/:userId",middlewareController.verifyTokenUserAndManagerAuth, userController.updateUser);
 
 module.exports = router

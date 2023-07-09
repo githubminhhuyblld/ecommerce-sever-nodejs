@@ -26,10 +26,28 @@ const middlewareController = {
         })
 
     },
-    verifyTokenAndManagerAuth: (req, res, next) => {
+    verifyTokenUserAndManagerAuth: (req, res, next) => {
         middlewareController.verifyToken(req, res, async () => {
             try {
                 const user = await User.findById(req.user.id).populate("roles");
+                if (!user) {
+                    return res.status(404).json({message: "User not found"});
+                }
+                const manager = user.roles.some((role) => role.name === "MANAGER");
+                if (manager || req.user.id === req.params.userId) {
+                    next();
+                } else {
+                    res.status(403).json({message: "You are not allowed to updated info user"});
+                }
+            } catch (error) {
+                res.status(500).json(error);
+            }
+        });
+    },
+    verifyTokenAndManagerAuth: (req, res, next) => {
+        middlewareController.verifyToken(req, res, async () => {
+            try {
+                const user = await User.findById(req.user.userId).populate("roles");
                 if (!user) {
                     return res.status(404).json({message: "User not found"});
                 }
@@ -44,15 +62,15 @@ const middlewareController = {
             }
         });
     },
-    verifyTokenAndAdminAuth: (req, res, next) => {
+    verifyTokenAdminAuth: (req, res, next) => {
         middlewareController.verifyToken(req, res, async () => {
             try {
-                const user = await User.findById(req.user.id).populate("roles");
+                const user = await User.findById(req.user.userId).populate("roles");
                 if (!user) {
                     return res.status(404).json({message: "User not found"});
                 }
-                const manager = user.roles.some((role) => role.name === "ADMIN");
-                if (manager) {
+                const admin = user.roles.some((role) => role.name === "ADMIN");
+                if (admin) {
                     next();
                 } else {
                     res.status(403).json({message: "Admin permission required"});

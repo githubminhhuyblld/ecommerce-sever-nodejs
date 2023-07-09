@@ -1,7 +1,7 @@
-
 const User = require("../models/User")
 
 const userController = {
+
     getAllUsers: async (req, res) => {
         try {
             const users = await User.find().select("-password -username -ServiceType -__v").populate({
@@ -35,5 +35,23 @@ const userController = {
         }
 
     },
+    updateUser: async (req, res) => {
+        const {image, firstName, lastName, birthday} = req.body;
+        const userId = req.params.userId
+        const user = await User.findById(userId)
+        if (!user) {
+            return res.status(404).json({message: 'User not found'});
+        }
+        await User.findByIdAndUpdate(userId, {
+            firstName,
+            lastName,
+            birthday,
+            image
+
+        }, {new: true});
+        res.status(200).json({message: "updated successfully"});
+
+
+    }
 }
 module.exports = userController

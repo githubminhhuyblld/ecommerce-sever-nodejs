@@ -4,8 +4,9 @@ const middlewareController = require("../middlewares/middlewareController")
 
 //REGISTER SHOP
 router.post("/:userId",middlewareController.verifyTokenAndUserAuth, shopController.registerShop);
+
 //UPDATE SHOP
-router.put("/:userId",middlewareController.verifyTokenAndUserAuth, shopController.updateShopByUserId );
+router.put("/:userId",middlewareController.verifyTokenUserAndManagerAuth, shopController.updateShopByUserId );
 
 
 module.exports = router;
