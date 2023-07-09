@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 const User = require("../models/User")
-const Role = require("../models/role")
+const Role = require("../models/Role")
 
 let refreshTokens = []
 const authController = {

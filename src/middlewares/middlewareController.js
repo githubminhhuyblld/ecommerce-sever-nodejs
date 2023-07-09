@@ -18,10 +18,10 @@ const middlewareController = {
     },
     verifyTokenAndUserAuth: (req, res, next) => {
         middlewareController.verifyToken(req, res, () => {
-            if (req.user.id === req.params.userId) {
+            if (req.user.id === req.params.userId || req.user.id === req.body.userId) {
                 next();
             } else {
-                res.status(500).json({message: "You are not allowed to register a shop for this user"});
+                res.status(500).json({message: "You are not allowed for this user"});
             }
         })
 

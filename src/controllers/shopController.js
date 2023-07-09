@@ -1,5 +1,5 @@
 const User = require("../models/User")
-const Shop = require("../models/shop")
+const Shop = require("../models/Shop")
 
 
 const shopController = {

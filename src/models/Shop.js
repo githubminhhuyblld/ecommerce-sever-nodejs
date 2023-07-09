@@ -1,9 +1,6 @@
 const mongoose = require("mongoose");
+const ShopStatus = require("../models/Enum/ShopStatus")
 
-const ShopStatus = {
-    ACTIVE: 'ACTIVE',
-    NO_ACTIVE: 'NO_ACTIVE'
-};
 
 
 const shopSchema = new mongoose.Schema({
