@@ -8,6 +8,8 @@ router.post("/",middlewareController.verifyTokenAndUserAuth ,cartController.addT
 router.put("/quantity",middlewareController.verifyTokenAndUserAuth ,cartController.updateCartQuantity);
 //REMOVE CART ITEM
 router.delete("/",middlewareController.verifyTokenAndUserAuth ,cartController.removeCartItems);
+//GET ALL CART BY USER ID
+router.get("/:userId",middlewareController.verifyTokenAndUserAuth ,cartController.getAllCartsByUserId);
 
 
 module.exports = router;

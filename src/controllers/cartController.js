@@ -94,6 +94,16 @@ const cartController = {
             }
         }
         return  totalPrice;
+    },
+    getAllCartsByUserId:async (req,res)=>{
+        try {
+            const userId = req.params.userId;
+            const carts = await Cart.find({ user: userId });
+
+            res.status(200).json(carts);
+        } catch (error) {
+            res.status(500).json({ error: "Can not found cart!" });
+        }
     }
 
 }
