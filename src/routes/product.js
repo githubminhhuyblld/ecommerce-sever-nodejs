@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const productController = require("../controllers/productController")
+const productController = require("../controllers/productController");
 
 //ADD PRODUCT
 router.post("/", productController.addProduct);
@@ -15,8 +15,5 @@ router.delete("/:id", productController.removeProductById);
 
 // SEARCH PRODUCTS
 router.get("/search", productController.filterProduct);
-
-
-
 
 module.exports = router;
